@@ -1,0 +1,199 @@
+:root {
+  --color-teal: #4297a0;
+  --color-coral: #e57f84;
+  --color-blue: #2f5061;
+  --color-ivory: #faeae6;
+}
+
+html {
+  font-family: roboto, sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-rows: 80px auto 80px;
+  grid-template-areas: 
+    "header header header header"
+    ". main main ."
+    "footer footer footer footer";
+  background-color: var(--color-ivory);
+  color: var(--color-blue);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+      background-color: #333;
+      color: var(--color-ivory);
+  }
+  a, a:visited {
+      color: var(--color-teal);
+  }
+}
+
+a, a:visited {
+  color: var(--color-teal);
+}
+
+main {
+  max-width: 800px;
+  grid-area: main;
+  justify-self: center;
+}
+
+footer {
+  grid-area: footer;
+  justify-self: center;
+  align-self: center;
+}
+header {
+  grid-area: header;
+  justify-self: center;
+}
+
+#image-wrapper {
+  width: 350px;
+  height: 450px;
+  overflow: hidden;
+  outline: 1px solid #000;
+  touch-action: none;
+  background: url("./assets/mask2.png");
+}
+
+a {
+  text-decoration: none;
+}
+
+#image-wrapper img {
+  height: 450px;
+  overflow: clip;
+  opacity: 0.6;
+  scale: 1;
+}
+
+.result-image {
+  border: black solid 1px;
+  width: 600px;
+  margin-top: 40px;
+}
+
+.hidden {
+  display: none;
+}
+
+input[type="range" i] {
+  color: var(--color-coral);
+}
+
+.btn.restart {
+  background-color: #6d7475;
+}
+
+#spinner {
+  height: 50px;
+  width: 50px;
+  border: 10px solid var(--color-ivory);
+  border-right-color: var(--color-coral);
+  border-radius: 50%;
+  animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.space-below {
+  margin-bottom: 20px;
+}
+
+
+.btn {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  border: 2px solid #000;
+  border-radius: 3px;
+  color: var(--color-ivory);
+  background: var(--color-teal);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  padding: 12px 20px;
+  text-align: center;
+  transition-duration: .15s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(.4, 0, .2, 1);
+}
+
+.btn:hover {
+  background: var(--color-blue);
+}
+/*********** Baseline, reset styles ***********/
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 22rem;
+}
+
+/* Removes default focus */
+input[type="range"]:focus {
+  outline: none;
+}
+
+/******** Chrome, Safari, Opera and Edge Chromium styles ********/
+/* slider track */
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: #4297a0;
+  border-radius: 0.5rem;
+  height: 1rem;
+}
+
+/* slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  margin-top: -8px; /* Centers thumb on the track */
+  background-color: #2f5061;
+  border-radius: 1.5rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+input[type="range"]:focus::-webkit-slider-thumb {
+  outline: 3px solid #2f5061;
+  outline-offset: 0.125rem;
+}
+
+/*********** Firefox styles ***********/
+/* slider track */
+input[type="range"]::-moz-range-track {
+  background-color: #4297a0;
+  border-radius: 0.5rem;
+  height: 1rem;
+}
+
+/* slider thumb */
+input[type="range"]::-moz-range-thumb {
+  background-color: #2f5061;
+  border: none; /*Removes extra border that FF applies*/
+  border-radius: 1.5rem;
+  height: 2rem;
+  width: 2rem;
+}
+
+input[type="range"]:focus::-moz-range-thumb{
+  outline: 3px solid #2f5061;
+  outline-offset: 0.125rem;
+}
