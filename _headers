@@ -1,4 +1,4 @@
 /*
     X-Content-Type-Options: nosniff
     Referrer-Policy: strict-origin
-    Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; object-src 'none'; child-src 'self'; frame-src 'self'; frame-ancestors 'none'; connect-src: 'self' https://storage.hannaweb.eu;
+    Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; object-src 'none'; child-src 'self'; frame-src 'self'; frame-ancestors 'none'; connect-src 'self' https://storage.hannaweb.eu;
