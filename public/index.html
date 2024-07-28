@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <title>Biometrische Bilder</title>
+        <link rel="stylesheet" href="style.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/assets/favicon/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/assets/favicon/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/assets/favicon/site.webmanifest" />
+    </head>
+
+    <body>
+        <header>
+            <h1>Biometrische Bilder erstellen</h1>
+        </header>
+        <main>
+            <div id="select-view" class="hiddens">
+                <h2>1. Bild aussuchen</h2>
+                <label class="btn" for="file">Bild aussuchen</label>
+                <input style="opacity: 0" type="file" id="file" name="file" />
+            </div>
+
+            <div id="crop-view" class="hidden">
+                <h2>2. Bild zuschneiden</h2>
+                <div style="display: grid; grid-template-columns: 350px 1fr">
+                    <div id="image-wrapper" class="space-below">
+                        <div id="face-height-container"></div>
+                        <img id="cropper" />
+                    </div>
+                    <div>
+                        <ul>
+                            <li>
+                                Die Nase sollte innerhalb des senkrechten grauen
+                                Bereichs sein.
+                            </li>
+                            <li>
+                                Die Augen in dem wagerechten grauen bereich.
+                            </li>
+                            <li>
+                                Das Kinn sollte auf der schwarzen Linie liegen
+                            </li>
+                            <li>
+                                Das Gesicht (ohne Frisur) sollte im dunklen
+                                roten Bereich enden. Notfalls kann es innerhalb
+                                der gesamten roten Bereichs enden.
+                            </li>
+                            <li>
+                                Detailierte Anweisungen für
+                                <a
+                                    href="https://www.bmi.bund.de/SharedDocs/downloads/DE/veroeffentlichungen/themen/moderne-verwaltung/ausweise/fotomustertafel.pdf?__blob=publicationFile&v=3"
+                                    >Erwachsene</a
+                                >
+                                und
+                                <a
+                                    href="https://www.bmi.bund.de/SharedDocs/downloads/DE/veroeffentlichungen/themen/moderne-verwaltung/ausweise/passbild-schablone-kinder.pdf?__blob=publicationFile&v=4"
+                                >
+                                    Kinder </a
+                                >.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 16px">
+                    <label class="checkbox">
+                        <input id="kids-mask" type="checkbox" />
+                        Vorlage für Kinder
+                    </label>
+                </div>
+                <div style="margin-bottom: 16px">
+                    <label for="zoom">Zoom</label>
+                </div>
+
+                <input
+                    type="range"
+                    class="space-below"
+                    id="zoom"
+                    name="zoom"
+                    min="0.55"
+                    step="0.05"
+                    max="10"
+                    value="1.5"
+                />
+                <div style="margin-bottom: 16px">
+                    <label class="checkbox">
+                        <input id="mask-toggle" type="checkbox" />
+                        Nasen/Augen vorlage ausblenden
+                    </label>
+                </div>
+                <div style="margin-bottom: 16px; display: flex; gap: 16px">
+                    <label for="chinline">Kinnlinie</label>
+                    <label class="checkbox">
+                        <input id="chinline-toggle" type="checkbox" />
+                        Ausblenden
+                    </label>
+                </div>
+
+                <input
+                    type="range"
+                    class="space-below"
+                    id="chinline"
+                    name="chinline"
+                    min="-30"
+                    step="1"
+                    max="100"
+                    value="-12"
+                />
+                <br />
+                <button class="space-below btn" id="generate-button">
+                    Erstellen
+                </button>
+                <button class="btn restart">Neustart</button>
+                <div style="display: flex; justify-content: center">
+                    <div id="spinner" class="hidden"></div>
+                </div>
+            </div>
+            <div id="result-view" class="hidden">
+                <h2>3. Fertig</h2>
+                <p>Das Ergebnis auf 10x15 cm ausdrucken.</p>
+                <img
+                    class="result-image space-below"
+                    id="img"
+                    src=""
+                    alt="result"
+                />
+                <div>
+                    <a
+                        id="download-btn"
+                        style="text-decoration: none"
+                        class="btn"
+                        >Speichern</a
+                    >
+                    <button class="btn restart">Neustart</button>
+                </div>
+            </div>
+
+            <dialog>
+                <h1>Das hat leider nicht funktioniert</h1>
+                <p></p>
+                <button class="btn" id="close-dialog">Schließen</button>
+            </dialog>
+            <p id="debug"></p>
+        </main>
+        <footer>
+            <a href="licence.html">Licences</a>
+        </footer>
+    </body>
+    <script type="module" src="./bundle.min.js"></script>
+</html>
