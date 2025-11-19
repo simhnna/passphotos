@@ -62,8 +62,6 @@ kidsMaskToggle.addEventListener("input", (e) => {
   }
 });
 
-let offsetX = 0;
-let offsetY = 0;
 let imageContents;
 
 document.getElementById("generate-button")!.addEventListener("click", () => {
