@@ -1,4 +1,4 @@
-use image::{io::Reader as ImageReader, GenericImage, GenericImageView, ImageBuffer, Rgba};
+use image::{GenericImage, GenericImageView, ImageBuffer, ImageReader, Rgba};
 
 fn main() {
     println!("Hello, world!");

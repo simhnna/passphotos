@@ -7,11 +7,11 @@ edition = "2021"
 
 [dependencies]
 console_error_panic_hook = "0.1.7"
-image = "0.25.1"
-wasm-bindgen = "0.2.92"
+image = "0.25.9"
+wasm-bindgen = "0.2.105"
 
 [dependencies.web-sys]
-version = "0.3.69"
+version = "0.3.82"
 features = [
   'Document',
   'Element',
