@@ -5,7 +5,6 @@ This is a simple website that takes a photo of a person and generates a passport
 There's a live version of this website available at [https://passbilder.pages.dev/](https://passbilder.pages.dev/).
 
 The image is handled locally in the browser and is _not_ uploaded to any server.
-In case of errors during generation the error, image dimensions and the parameters used for generation are sent to a server for debugging purposes.
 
 ## Contributing
 

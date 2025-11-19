@@ -1,16 +1,16 @@
 extern crate console_error_panic_hook;
 extern crate wasm_bindgen;
 extern crate web_sys;
-use image::{
-    io::Reader as ImageReader, DynamicImage, GenericImage, ImageBuffer, ImageEncoder, Rgba,
-};
+use image::{DynamicImage, GenericImage, ImageBuffer, ImageEncoder, ImageReader, Rgba};
 use std::io::Cursor;
 use wasm_bindgen::prelude::*;
 use web_sys::{wasm_bindgen::JsCast, HtmlInputElement};
 
 fn get_image_details() -> Result<(u32, u32, u32, u32), JsError> {
     let window = web_sys::window().ok_or(JsError::new("Can't get window"))?;
-    let document = window.document().ok_or(JsError::new("Can't get document"))?;
+    let document = window
+        .document()
+        .ok_or(JsError::new("Can't get document"))?;
     let img: web_sys::HtmlImageElement = document
         .get_element_by_id("cropper")
         .ok_or(JsError::new("image not found in dom"))?
@@ -58,22 +58,29 @@ fn get_image_details() -> Result<(u32, u32, u32, u32), JsError> {
 pub fn gen(input_image: Vec<u8>) -> Result<Vec<u8>, JsError> {
     let (px, py, width, height) = get_image_details()?;
 
-    let reader = ImageReader::new(Cursor::new(input_image)).with_guessed_format().map_err(|e| JsError::new(&format!("Can't read image: {:?}", e)))?;
+    let reader = ImageReader::new(Cursor::new(input_image))
+        .with_guessed_format()
+        .map_err(|e| JsError::new(&format!("Can't read image: {:?}", e)))?;
 
-    let image = reader.decode().map_err(|e| JsError::new(&format!("Can't decode image: {:?}", e)))?;
+    let image = reader
+        .decode()
+        .map_err(|e| JsError::new(&format!("Can't decode image: {:?}", e)))?;
 
     let image = image.crop_imm(px, py, width, height);
 
-    let result = generate_passphoto(image).map_err(|e| JsError::new(&format!("Can't generate passphoto: {:?}", e)))?;
+    let result = generate_passphoto(image)
+        .map_err(|e| JsError::new(&format!("Can't generate passphoto: {:?}", e)))?;
 
     let mut result_vec = Vec::new();
     let encode = image::codecs::png::PngEncoder::new(&mut result_vec);
-    encode.write_image(
-        &result,
-        result.width(),
-        result.height(),
-        image::ExtendedColorType::Rgba8,
-    ).map_err(|e| JsError::new(&format!("Can't encode image {:?}", e)))?;
+    encode
+        .write_image(
+            &result,
+            result.width(),
+            result.height(),
+            image::ExtendedColorType::Rgba8,
+        )
+        .map_err(|e| JsError::new(&format!("Can't encode image {:?}", e)))?;
     return Ok(result_vec);
 }
 

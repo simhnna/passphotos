@@ -79,7 +79,7 @@ document.getElementById("generate-button")!.addEventListener("click", () => {
       downloadLink.download = "passbilder.png";
       showResult();
     } catch (e) {
-      reportError(e);
+      showError(e);
     }
   });
 });
@@ -136,39 +136,12 @@ document.querySelector("#close-dialog")!.addEventListener("click", () => {
   dialog.close();
 });
 
-function reportError(error) {
+function showError(error: unknown) {
   spinner.classList.add("hidden");
   const details = dialog.querySelector("p")!;
   details.textContent =
     error instanceof Error ? error.stack || error.message : error.toString();
   dialog.showModal();
-  const data = {
-    error:
-      error instanceof Error ? error.stack || error.message : error.toString(),
-    image: {
-      clientWidth: cropperElement.clientWidth,
-      clientHeight: cropperElement.clientHeight,
-      naturalWidth: cropperElement.naturalWidth,
-      naturalHeight: cropperElement.naturalHeight,
-      translate: {
-        x: offsetX,
-        y: offsetY,
-      },
-      scale: cropperElement.style.scale,
-    },
-  };
-  fetch(
-    "https://storage.hannaweb.eu/api/collections/passphoto_errors/records",
-    {
-      method: "POST",
-      body: JSON.stringify({ data }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    },
-  ).catch((e) => {
-    console.error("Error reporting error", e);
-  });
 }
 
 async function run() {
