@@ -1,126 +1,87 @@
 <!doctype html>
 <html lang="de">
-
 <head>
-    <title>Biometrische Bilder - 404</title>
+    <meta charset="utf-8" />
+    <title>Biometrische Bilder - Lizenzen</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png">
-    <link rel="manifest" href="/assets/favicon/site.webmanifest">
-    <style>
-        :root {
-            --color-teal: #4297a0;
-            --color-coral: #e57f84;
-            --color-blue: #2f5061;
-            --color-ivory: #faeae6;
-        }
-
-        body {
-            background-color: #faeae6;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            body {
-                background: #333;
-                color: var(--color-ivory);
-            }
-
-            a,
-            a:visited {
-                color: skyblue;
-            }
-        }
-
-        a,
-        a:visited {
-            color: var(--color-teal);
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        a:visited {
-            text-decoration: none;
-        }
-
-        .container {
-            font-family: sans-serif;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .intro {
-            text-align: center;
-        }
-
-        .licenses-list {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .license-used-by {
-            margin-top: -10px;
-        }
-
-        .license-text {
-            max-height: 200px;
-            overflow-y: scroll;
-            white-space: pre-wrap;
-        }
-    </style>
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="32x32"
+        href="/assets/favicon/favicon-32x32.png"
+    />
+    <link
+        rel="icon"
+        type="image/png"
+        sizes="16x16"
+        href="/assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/favicon/site.webmanifest" />
 </head>
 
-
 <body>
-    <main class="container">
-        <div class="intro">
-            <a href="..">
-                <h1>
-                    Biometrische Bilder erstellen
-                </h1>
-            </a>
-            <p>This page lists the licenses of the projects used.</p>
+    <header>
+        <div class="header-inner">
+            <h1>Biometrische Bilder erstellen</h1>
+            <p class="header-subtitle">Lizenzen und Abhängigkeiten</p>
         </div>
-        <h2>Overview of licenses:</h2>
-        <ul class="licenses-overview">
+    </header>
+    <main>
+        <div class="text-center mb-8">
+            <a href="/">
+                <h1 class="m-0 text-[1.35rem] font-bold tracking-[-0.01em]">Biometrische Bilder erstellen</h1>
+            </a>
+            <p class="mt-2 text-[var(--color-text-muted)]">Diese Seite listet die Lizenzen der verwendeten Projekte auf.</p>
+        </div>
+
+        <h2>Lizenz-Übersicht:</h2>
+        <ul class="mb-8">
             {{#each overview}}
-            <li><a href="#{{id}}">{{name}}</a> ({{count}})</li>
+            <li class="mb-2"><a href="#{{id}}">{{name}}</a> ({{count}})</li>
             {{/each}}
         </ul>
 
-        <h2>All license text:</h2>
-        <ul class="licenses-list">
+        <h2>Alle Lizenztexte:</h2>
+        <ul class="list-none m-0 p-0">
             {{#each licenses}}
-            <li class="license">
-                <h3 id="{{id}}">{{name}}</h3>
-                <h4>Used by:</h4>
-                <ul class="license-used-by">
+            <li class="mb-8 pb-8 border-b border-[var(--color-card-border)] last:border-b-0 last:mb-0 last:pb-0">
+                <h3 id="{{id}}" class="m-0 mb-2 text-[1.1rem] font-semibold">{{name}}</h3>
+                <h4 class="mt-4 mb-2 text-[0.9rem] font-semibold text-[var(--color-text-muted)]">Verwendet von:</h4>
+                <ul class="-mt-2.5">
                     {{#each used_by}}
-                    <li><a href="{{#if crate.repository}} {{crate.repository}} {{else}} https://crates.io/crates/{{crate.name}} {{/if}}">{{crate.name}} {{crate.version}}</a></li>
+                    <li class="mb-2"><a href="{{#if crate.repository}} {{crate.repository}} {{else}} https://crates.io/crates/{{crate.name}} {{/if}}">{{crate.name}} {{crate.version}}</a></li>
                     {{/each}}
                 </ul>
-                <pre class="license-text">{{text}}</pre>
+                <pre class="max-h-[200px] overflow-y-scroll whitespace-pre-wrap font-mono text-[0.85rem] bg-[var(--color-controls-bg)] p-3 rounded border border-[var(--color-card-border)]">{{text}}</pre>
             </li>
             {{/each}}
         </ul>
 
-        <div class="intro">
-            <h1>Other things used</h1>
-            <p>
-                <a href="https://github.com/Cool-Runningz/range-input.css">range input</a>
+        <div class="text-center mb-8">
+            <h1 class="m-0 text-[1.35rem] font-bold tracking-[-0.01em]">Weitere verwendete Komponenten</h1>
+            <p class="mt-2 text-[var(--color-text-muted)]">
+                <a href="https://github.com/Cool-Runningz/range-input.css">Range Input CSS</a>
             </p>
-            <p>
-                <a href="https://copy-paste-css.com/">Buttons</a>
+            <p class="mt-2 text-[var(--color-text-muted)]">
+                <a href="https://copy-paste-css.com/">Button Styles</a>
             </p>
-            <p>
+            <p class="mt-2 text-[var(--color-text-muted)]">
                 <a href="https://github.com/EmbarkStudios/cargo-about">cargo-about</a>
             </p>
         </div>
     </main>
+    <footer>
+        <a href="https://github.com/simhnna/passphotos">Source</a> |
+        <a href="/licence.html">Licences</a>
+    </footer>
 </body>
 
 </html>

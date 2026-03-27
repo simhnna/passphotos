@@ -1,6 +1,9 @@
 {
+  "type": "module",
   "scripts": {
-    "build": "rollup -c",
+    "build:css": "postcss src/input.css -o public/style.css",
+    "build": "npm run build:css && rollup -c",
+    "build:css:watch": "postcss src/input.css -o public/style.css --watch",
     "start": "rollup -c -w"
   },
   "dependencies": {
@@ -10,7 +13,11 @@
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.3.0",
+    "@tailwindcss/postcss": "^4.2.2",
+    "postcss": "^8.5.8",
+    "postcss-cli": "^11.0.1",
     "rollup": "^4.17.2",
+    "tailwindcss": "^4.2.2",
     "tslib": "^2.6.2"
   }
 }
