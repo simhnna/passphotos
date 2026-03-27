@@ -1,3 +1,5 @@
 /target
 node_modules
 public/bundle.min.js
+public/style.css
+public/passphoto_bg.wasm
